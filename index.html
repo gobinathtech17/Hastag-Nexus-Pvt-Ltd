@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <link rel="icon" type="png" href="Images/hastag logo.png">
   <title>Hastag Nexus Pvt Ltd (Web Buid Your Vision)</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
@@ -21,7 +23,7 @@
 
     body {
       font-family: 'League Spartan', sans-serif;
-      background-color: #f8f9fb;
+     background-color: #ffd58e;
       color: #222;
     }
 
@@ -31,7 +33,7 @@
   display: flex;
   justify-content: space-between; /* logo left, hamburger right */
   align-items: center;
-  background-color: #ffffff;
+  background-color: #fcb017;
   padding: 12px 16px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   position: sticky;
@@ -58,6 +60,7 @@
   font-weight: 600;
   white-space: nowrap;
   overflow: hidden;
+  color: #8c3100;
   text-overflow: ellipsis; /* trims if space is too small */
 }
 
@@ -96,6 +99,24 @@
   padding-bottom: 4px;
   cursor: pointer;
   transition: color 0.3s ease;
+}
+.nav-parent {
+  display: flex;
+  align-items: center;
+  gap: 6px;              /* spacing between text & icon */
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.nav-parent i {
+  font-size: 17px;       /* adjust icon size */
+  transition: 0.3s;
+}
+
+/* Optional: rotate arrow on hover */
+.dropdown:hover .nav-parent i {
+  transform: rotate(180deg);
 }
 
 /* Hover underline */
@@ -262,7 +283,7 @@
 
     .about-us {
       padding: 60px 20px;
-      background-color: #ffffff;
+      background-color: #ffd58e ;
       text-align: center;
     }
 
@@ -295,11 +316,12 @@
   background-color: #f8f9fb;
   text-align: center;
 
-  /* animation start state */
+
+
   opacity: 0;
   transform: translateY(40px);
 
-  /* animation */
+  
   animation: featureFadeUp 0.8s ease forwards;
 }
 
@@ -322,7 +344,7 @@
   }
 }
 
-/* icon circle */
+
 .icon-circle {
   width: 80px;
   height: 80px;
@@ -340,6 +362,7 @@
   color: #000;
 }
 
+
 /* text */
 .feature-box h3 {
   font-size: 1.1rem;
@@ -352,65 +375,96 @@
   color: #555;
   line-height: 1.5;
 }
+.feature-box a {
+  margin-top: 10px;
+  padding: 10px;
+  border: 2px solid #ee9905;
+  text-decoration: none;
+  color: #000;
+  width: 150px;
+  display: inline-block; /* Important for width + padding to work properly */
+  border-radius: 6px; /* Optional: smooth corners */
+}
 
-    section.banner {
+.feature-box a:hover {
+  background-color: #7d1404;
+  color: #fff;
+  border-color: #7d1404; /* Optional: matches hover background */
+}
 
-      background-color: #f8f9fb;
-      
-      padding: 60px 50px;
-      border-radius: 20px;
-      margin: 0px auto;
-      width: 100%;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-    }
 
-    .banner-content, .banner-image {
-      flex: 1 1 100%;
-      text-align: center;
-    }
+section.banner {
+  position: relative;
+  background: linear-gradient(45deg, #ff8a00 0%, #ff3d00 100%);
+  padding: 60px 50px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+  overflow: hidden;
+}
 
-   .banner-image {
+section.banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);  /* black overlay */
+  z-index: 1;
+}
+
+.banner-content,
+.banner-image {
+  position: relative;
+  z-index: 2;   /* lifts content above overlay */
+  flex: 1 1 100%;
+  text-align: center;
+}
+
+
+/* ------------------------------
+   BANNER IMAGE
+------------------------------ */
+.banner-image {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 30px;
-  width: 100%;
+  margin: 30px auto 0;
   max-width: 450px;
-  margin-left: auto;
-  margin-right: auto;
+  width: 100%;
 }
 
 .banner-image img.main {
   max-width: 100%;
   height: auto;
+  z-index: 2;
+}
+
+/* Swirl Graphics */
+.banner-image img.swirl {
+  position: absolute;
+  width: 12vw;
+  max-width: 70px;
+  min-width: 30px;
+  opacity: 0.85;
   z-index: 1;
 }
 
-/* Swirls */
-.banner-image img.swirl {
-  position: absolute;
-  width: 12vw;  /* responsive size */
-  max-width: 60px;
-  min-width: 30px;
-  z-index: 0;
-  opacity: 0.8;
-}
-
 .banner-image .swirl-left {
-  left: -6vw;
+  left: -7vw;
   top: 5vw;
 }
 
 .banner-image .swirl-right {
-  right: -6vw;
+  right: -7vw;
   top: 5vw;
 }
 
-/* Tablet adjustments */
+/* ------------------------------
+   TABLET RESPONSIVE
+------------------------------ */
 @media (min-width: 768px) {
   .banner-content {
     flex: 1 1 50%;
@@ -419,13 +473,12 @@
 
   .banner-image {
     flex: 1 1 45%;
-    text-align: center;
     margin-top: 0;
   }
 
   .banner-image img.swirl {
     width: 8vw;
-    max-width: 50px;
+    max-width: 60px;
   }
 
   .banner-image .swirl-left {
@@ -439,63 +492,76 @@
   }
 }
 
-/* Large screens */
+/* ------------------------------
+   DESKTOP RESPONSIVE
+------------------------------ */
 @media (min-width: 1200px) {
   .banner-image img.swirl {
-    width: 60px;
+    width: 70px;
   }
   .banner-image .swirl-left {
-    left: -40px;
+    left: -50px;
     top: 40px;
   }
   .banner-image .swirl-right {
-    right: -40px;
+    right: -50px;
     top: 40px;
   }
 }
 
-
-  /* Statistics Boxes Section */
+/* ------------------------------
+   STATS BOXES
+------------------------------ */
 .stats-boxes {
   display: flex;
   gap: 24px;
   flex-wrap: wrap;
   justify-content: center;
+  margin-top: 40px;
 }
 
 .stats-box {
-  background: #111;
-  color: #fff;
-  padding: 10px 15px;
+  /* background: rgba(255, 255, 255, 0.16); */
+  background-color: #f8f9fb;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  
+  padding: 18px 15px;
   text-align: center;
   border-radius: 14px;
   width: 220px;
+
+  color: #111;
+
   opacity: 0;
   transform: translateY(40px);
   animation: boxFadeUp 0.8s ease forwards;
-  margin-top: 25px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
 }
 
 .stats-box:nth-child(1) { animation-delay: 0.2s; }
 .stats-box:nth-child(2) { animation-delay: 0.4s; }
 .stats-box:nth-child(3) { animation-delay: 0.6s; }
 
+/* Number + Icon */
 .stats-box b {
-  font-size: 34px;
-  color: #f59e0b;
+  font-size: 36px;
+  color: #000;
 }
 
 .icon {
   font-size: 32px;
-  color: #f59e0b;
+  color: #000;
   margin-bottom: 10px;
 }
 
+/* Hover Effect */
 .stats-box:hover {
-  transform: translateY(-6px);
+  transform: translateY(-8px);
   transition: 0.3s ease;
 }
 
+/* Animation */
 @keyframes boxFadeUp {
   to {
     opacity: 1;
@@ -649,22 +715,16 @@
   color: #888;
 }
 .circle-wrapper {
-  
   width: 450px;
   height: 450px;
-
   border-radius: 100%;
   background-color: #f8b746;
-
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   position: relative;
-
- 
-
   animation: float 4s ease-in-out infinite;
 }
 
@@ -687,11 +747,10 @@
 /* Container for the core values section */
 .core-values-section {
   padding: 40px 10px;
-  background-color: #ffffff;
+  background-color: #f3bf66;
   text-align: center;
 }
 
-/* Section heading */
 .core-values-section h2 {
   font-size: 1.8rem;
   margin-bottom: 40px;
@@ -699,56 +758,51 @@
   color: #000;
 }
 
-/* Wrapper */
+/* 🎯 Create 3x2 Grid */
 .values-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 90px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px;
+  justify-items: center;
 }
 
-/* Value Card */
 .value-item {
   border-radius: 15px;
   padding: 30px 20px;
+  width: 100%;
   max-width: 300px;
   height: 350px;
   text-align: center;
   background-color: #222;
   color: white;
 
-  /* animation start state */
   opacity: 0;
   transform: translateY(40px);
-
-  /* animation */
   animation: valueFadeUp 0.8s ease forwards;
 
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 
-  /* diagonal shape */
   clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%);
 }
 
-/* stagger animation */
-.value-item:nth-child(1) { animation-delay: 0.2s; }
-.value-item:nth-child(2) { animation-delay: 0.4s; }
-.value-item:nth-child(3) { animation-delay: 0.6s; }
-.value-item:nth-child(4) { animation-delay: 0.8s; }
+/* Stagger */
+.value-item:nth-child(1) { animation-delay: 0.1s; }
+.value-item:nth-child(2) { animation-delay: 0.2s; }
+.value-item:nth-child(3) { animation-delay: 0.3s; }
+.value-item:nth-child(4) { animation-delay: 0.4s; }
+.value-item:nth-child(5) { animation-delay: 0.5s; }
+.value-item:nth-child(6) { animation-delay: 0.6s; }
 
-/* Hover effect */
 .value-item:hover {
   transform: translateY(-10px);
 }
 
-/* Icon */
-.value-item img {
-  width: 50px;
-  height: 50px;
+.icon {
+  font-size: 42px;
+  color: #f59e0b;
   margin-bottom: 20px;
 }
 
-/* Heading */
 .value-item h3 {
   font-size: 1.2rem;
   font-weight: 550;
@@ -756,7 +810,6 @@
   color: #f8b746;
 }
 
-/* Text */
 .value-item p {
   font-size: 0.95em;
   line-height: 1.6;
@@ -764,7 +817,6 @@
   text-align: justify;
 }
 
-/* Animation Keyframes */
 @keyframes valueFadeUp {
   to {
     opacity: 1;
@@ -772,12 +824,341 @@
   }
 }
 
+/* Responsive: 2 columns */
+@media (max-width: 992px) {
+  .values-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Responsive: 1 column */
+@media (max-width: 600px) {
+  .values-wrapper {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* Digital Marketing */
+.service {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 140px 8%;
+  gap: 80px;
+}
+
+/* TEXT */
+.content {
+  max-width: 460px;
+}
+
+.content h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.content p {
+  font-size: 14px;
+  color: #333;
+  line-height: 1.7;
+  margin-bottom: 12px;
+}
+
+button {
+  margin-top: 20px;
+  padding: 12px 20px;
+  background: #000;
+  color: #fff;
+  border: none;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+/* IMAGE LAYER */
+.images {
+  position: relative;
+  width: 520px;
+  height: 320px;
+}
+
+.img {
+  position: absolute;
+  width: 420px;
+  border-radius: 4px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.img.back {
+  left: 0;
+  top: 30px;
+  opacity: 0.95;
+}
+
+.img.front {
+  right: 0;
+  top: 0;
+}
+
+/* LAYOUT FLIP */
+.service-left {
+  flex-direction: row;
+}
+
+.service-right {
+  flex-direction: row;
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+  .service {
+    flex-direction: column;
+    text-align: center;
+    padding: 80px 6%;
+    gap: 50px;
+  }
+
+  .content {
+    max-width: 100%;
+  }
+
+  .images {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: scale(0.85);
+  }
+
+  .img {
+    position: relative;
+    width: 90%;
+    max-width: 400px;
+    margin-bottom: 20px;
+  }
+
+  .img.back,
+  .img.front {
+    top: 0;
+    left: auto;
+    right: auto;
+  }
+}
+
+/* ---------- MOBILE ---------- */
+@media (max-width: 576px) {
+  .service {
+    padding: 60px 5%;
+  }
+
+  .content h2 {
+    font-size: 22px;
+  }
+
+  .content p {
+    font-size: 13px;
+  }
+
+  button {
+    width: 100%;
+    padding: 14px;
+  }
+}
+
+
+
+
+/* Container */
+/* Values Section Container */
+.values-section {
+  width: 90%;
+  max-width: 1200px;
+  margin: 70px auto;
+}
+
+/* Title */
+.values-title {
+  text-align: center;
+  font-size: 34px;
+  font-weight: 800;
+  margin-bottom: 60px;
+  color: #000;
+}
+
+/* Card Style Like Screenshot */
+.value-row {
+  display: grid;
+  grid-template-columns: 140px 1px auto;
+  align-items: center;
+  gap: 25px;
+
+  background: #ffffff;
+  padding: 30px 35px;
+  margin-bottom: 35px;
+
+  border-radius: 22px;
+  border: 1px solid #e9e9e9;
+
+  /* Soft shadow like testimonial cards */
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+
+  transition: all 0.3s ease;
+}
+
+/* Hover effect same as screenshot */
+.value-row:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.10);
+}
+
+/* Number */
+.value-number span {
+  font-size: 42px;
+  font-weight: 800;
+  color: #8c3100;
+  display: block;
+}
+
+.value-number label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #000;
+}
+
+/* Divider Line */
+.value-divider {
+  width: 1px;
+  height: 80%;
+  background: #d0d0d0;
+}
+
+/* Text Style Matching Cards */
+.value-text {
+  font-size: 17px;
+  line-height: 1.6;
+  color: #333;
+  letter-spacing: 0.2px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .value-row {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 25px;
+  }
+
+  .value-divider {
+    display: none;
+  }
+
+  .value-number span {
+    font-size: 36px;
+  }
+}
+
+
+
+/* Business Suite */
+.second-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    padding: 50px 5%;
+    box-sizing: border-box;
+    background-color:#f8f9fb;
+}
+
+.second-left img {
+    width: 100%;
+    max-width: 480px;
+}
+
+.second-right h2 span {
+    color: #f5a623;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.second-right h1 {
+    font-size: 38px;
+    font-weight: 800;
+    margin: 10px 0;
+}
+
+.second-right p {
+    font-size: 17px;
+    line-height: 1.6;
+    color: #555;
+    max-width: 520px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .second-container {
+        flex-direction: column;
+        text-align: justify;
+    }
+    
+    .second-right h1 {
+        font-size: 30px;
+    }
+
+    .second-right h2 span {
+        font-size: 26px;
+    }
+}
 
 
 
 
 
+/* Keyframe */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+
+/*pg 1 to 5*/
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+/*page 1 to 5*/
+
+/* ---------- MOBILE ---------- */
+@media (max-width: 576px) {
+  .service {
+    padding: 60px 5%;
+  }
+
+  .content h2 {
+    font-size: 22px;
+  }
+
+  .content p {
+    font-size: 13px;
+  }
+
+  button {
+    width: 100%;
+    padding: 14px;
+  }
+}
+
+/*  */
+/*  */
   </style>
+  <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 </head>
 <body>
 
@@ -785,7 +1166,7 @@
   <nav class="navbar">
     <div class="logo">
       <img src="Images/hastag logo.png" alt="Logo" />
-      <h2>Hastag Nexus Pvt Ltd</h2>
+      <h2>Hastag Nexus</h2>
     </div>
     <div class="hamburger" onclick="toggleMenu()">
       <span></span><span></span><span></span>
@@ -793,20 +1174,22 @@
     <div class="nav-links" id="navLinks">
       <a href="index.html">Home</a>
       <div class="dropdown">
-        <span class="nav-parent">Services</span>
+       <span class="nav-parent">Services<i class='fas fa-angle-down' ></i></span>
         <div class="dropdown-content">
-          <a href="domain-hosting.html">Website Development</a>
+          <a href="web.html">Website Development</a>
           <a href="app-development.html">App Development</a>
-          <a href="digital-marketing.html">Digital Marketing</a>
-          <a href="cloud-services.html">PR Team</a>
+          <a href="DM.html">Digital Marketing</a>
+          <a href="PR.html">PR Team</a>
+          <a href="PR.html">Graphics Design</a>
+          <a href="PR.html">UI/UX Design</a>
         </div>
       </div>
       <a href="contact.html">Contact Us</a>
       <a href="feedback.html">Feedback</a>
-      <a href="register.html"
-        style="background-color: #fcb017; color: black; padding: 15px 25px; border-radius: 10px; text-decoration: none; font-weight: bold;"
+      <a href="Regsiter.html"
+        style="background-color: #8c3100; color: #fff; padding: 15px 25px; border-radius: 10px; text-decoration: none; font-weight: bold;"
         onmouseover="this.style.backgroundColor='#000'; this.style.color='#fff';"
-        onmouseout="this.style.backgroundColor='#f8b746'; this.style.color='black';">
+        onmouseout="this.style.backgroundColor='#8c3100'; this.style.color='#fff';">
         Register Now
       </a>
     </div>
@@ -815,7 +1198,8 @@
   <!-- Banner Section -->
   <section class="banner">
     <div class="banner-content">
-      <h1 style="font-size: 5rem; font-weight: 700; color: #000;">Launch Smarter, <br><span style="font-size: 2.5 rem;"> Market Better,</span>     Grow Faster.</h1>
+          <div id="lights"></div>
+      <h1 style="font-size: 5rem; font-weight: 700; color: #f8f9fb;">Launch Smarter, <br><span style="font-size: 2.5 rem;"> Market Better,</span>     Grow Faster.</h1>
       <div class="stats-boxes">
         <div class="stats-box">
           <div style="font-size:32px; color:#f59e0b; margin-bottom:8px;">
@@ -844,8 +1228,52 @@
 
   </section>
 
+<!-- Business Suite -->
+
+  <div class="second-container">
+    <div class="second-left">
+        <img src="images/hastag logo.png" alt="Business People">
+    </div>
+
+    <div class="second-right">
+          <h2 style="
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1.3;
+    text-align: center;
+">Where <span style="
+      font-size: 58px;
+      background: linear-gradient(90deg, #ff8a00, #ff3d00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 800;
+  ">Strategy  </span> Meets Digital 
+    <span style="
+        font-size: 58px;
+        background: linear-gradient(90deg, #ff8a00, #ff3d00);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 800;
+    ">Success</span>
+
+</h2>
+
+        <h1>We've got you covered</h1>
+
+        <p>
+            With cloud-first and mobile-first products, NowFloats is simplifying the digital
+            journey of millions of businesses. From web to social to infinite scalability at a
+            fraction of the cost—our innovations are popular with both big brands and small
+            businesses. We approach every business category individually, creating industry-
+            specific solutions that help businesses grow.
+        </p>
+    </div>
+</div>
+
+
+<!--  -->
   <!-- What We Offer -->
-  <section class="about-us">
+<section class="about-us">
     <div class="container">
       <h2 class="section-title">What We Offer You</h2>
       <p class="section-subtitle">Your one-stop solution for all digital needs</p>
@@ -854,54 +1282,116 @@
           <div class="icon-circle"><i class="fas fa-globe"></i></div>
           <h3>Website Development</h3>
           <p>Reliable domain registration and secure hosting services for your business.</p>
+           <a href="">View</a>
         </div>
         <div class="feature-box">
           <div class="icon-circle"><i class="fas fa-mobile-alt"></i></div>
           <h3>Mobile App Development</h3>
           <p>Custom-built Android and iOS apps to bring your ideas to life.</p>
+           <a href="">View</a>
         </div>
         <div class="feature-box">
           <div class="icon-circle"><i class="fas fa-bullhorn"></i></div>
           <h3>Digital Marketing</h3>
           <p>Boost your online presence with strategic marketing campaigns.</p>
+           <a href="">View</a>
         </div>
         <div class="feature-box">
           <div class="icon-circle"><i class="fas fa-cloud"></i></div>
           <h3>PR Team</h3>
           <p>Scalable cloud solutions to store, manage, and access your data securely.</p>
+           <a href="">View</a>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="core-values-section">
-    <h2 class="section-title">Core Values And Principles</h2>
-    
-    <div class="values-wrapper">
-      <div class="value-item">
-        <div style="font-size:42px; color:#f59e0b; padding-bottom:20px;">
-    <i class="fas fa-handshake"></i><br>
-        </div>
-        <h3>Long-term commitment</h3>
-        <p>29+ years of running a profitable organization gives us a good sense of challenges that a growing business faces. We take pride in running a sustainable business that’s powered by you, our customer.</p>
-      </div>
+<section class="core-values-section">
+  <h2 class="section-title">Core Values And Principles</h2>
 
-      <div class="value-item">
-        <div style="font-size:42px; color:#f59e0b; padding-bottom:20px;">
-   <i class="fas fa-bullseye"></i>
-        </div>
-        <h3>Focus on research and development</h3>
-        <p>Software is our craft and we back it up with relentless investments in R&D. We prefer to own the entire technology stack, including running our data centers globally.</p>
-      </div>
+  <div class="values-wrapper">
 
-      <div class="value-item">
-        <div style="font-size:42px; color:#f59e0b; padding-bottom:20px;">
-   <i class="fas fa-lightbulb"></i>
-        </div>
-        <h3>Customer-first philosophy</h3>
-        <p>It's our customers' trust and goodwill that has helped us establish a strong position in the market. No matter the size of your business, we’re here to help you grow.</p>
-      </div>
+    <div class="value-item">
+      <div class="icon"><i class="fas fa-handshake"></i></div>
+      <h3>Leading with Innovation</h3>
+      <p>Embrace new ideas, explore emerging technologies, and adapt quickly to a changing digital landscape — helping our clients stay ahead.</p>
     </div>
+
+    <div class="value-item">
+      <div class="icon"><i class="fas fa-bullseye"></i></div>
+      <h3>Integrity in Every Action</h3>
+      <p>Be honest, transparent, and ethical in everything we do. We build trust through clarity, accountability, and commitments we stand by.</p>
+    </div>
+
+    <div class="value-item">
+      <div class="icon"><i class="fas fa-lightbulb"></i></div>
+      <h3>Respect for Every Individual</h3>
+      <p>Acknowledge the value each person brings. We foster an inclusive environment with diverse skills and perspectives.</p>
+    </div>
+
+   
+  </div>
+</section>
+
+
+<!-- About us -->
+<section class="values-section">
+  <h2 class="values-title">Our values guide us in all that we do</h2>
+
+  <div class="value-row">
+    <div class="value-number">
+      <span>01</span>
+      <label>Trust</label>
+    </div>
+    <div class="value-divider"></div>
+    <p class="value-text">
+      Trust wholeheartedly – in your team, customers, systems, and leaders.
+    </p>
+  </div>
+
+  <div class="value-row">
+    <div class="value-number">
+      <span>02</span>
+      <label>Impact</label>
+    </div>
+    <div class="value-divider"></div>
+    <p class="value-text">
+      Drive impact through unwavering commitment to delivering results.
+    </p>
+  </div>
+
+  <div class="value-row">
+    <div class="value-number">
+      <span>03</span>
+      <label>Empathy</label>
+    </div>
+    <div class="value-divider"></div>
+    <p class="value-text">
+      Champion empathy, placing humanity at the forefront of every interaction.
+    </p>
+  </div>
+
+  <div class="value-row">
+    <div class="value-number">
+      <span>04</span>
+      <label>Innovative</label>
+    </div>
+    <div class="value-divider"></div>
+    <p class="value-text">
+      Innovate with a purpose – to simplify rather than complicate.
+    </p>
+  </div>
+
+  <div class="value-row">
+    <div class="value-number">
+      <span>05</span>
+      <label>Integrity</label>
+    </div>
+    <div class="value-divider"></div>
+    <p class="value-text">
+      Do what is right, guided by integrity, not just what is asked.
+    </p>
+  </div>
 </section>
 
 
@@ -959,20 +1449,27 @@
 <footer class="footer">
   <div class="footer-container">
     <div class="footer-column">
-      <h3>Hastag Nexus Pvt Ltd</h3>
-      <p>
-        Address
-      </p>
+      <img src="Images/hastag logo.png" alt="" width="150px" height="150px">
+      
     </div>
 
     <div class="footer-column">
       <h3>Quick Links</h3>
       <ul class="footer-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="contact.html">Contact Us</a></li>
-        <li><a href="feedback.html">Feedback</a></li>
-        <li><a href="register.html">Register Now</a></li>
+       <li><a href="index.html"><i class="fas fa-house"></i>  Home</a></li>
+        <li><a href="services.html"><i class="fas fa-briefcase"></i>  Services</a></li>
+        <li><a href="contact.html"><i class="fas fa-envelope"></i>  Contact Us</a></li>
+        <li><a href="feedback.html"><i class="fas fa-comments"></i>  Feedback</a></li>
+        <li><a href="register.html"><i class="fas fa-user-plus"></i>  Register Now</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h3>Social Links</h3>
+      <ul class="footer-links">
+       <li><a href="https://www.instagram.com/hastagnexus?igsh=MXlpeTd1a2d0eGFm" class="insta"><i class="fab fa-instagram"></i>  Hastag Nexus</a></li>
+        <li><a href="#" class="whatsapp"><i class="fab fa-whatsapp"></i> +91 9600004536</a></li>
+        <li> <a href="mailto:yourmail@example.com" class="mail"><i class="fas fa-envelope"></i> hastagnexus@gmail.com</a></li>
+      
       </ul>
     </div>
   </div>
@@ -1030,7 +1527,7 @@ var swiper = new Swiper(".mySwiper", {
 <script>
 window.onload = () => {
   const counters = document.querySelectorAll(".counter");
-  const speed = 40; // animation speed
+  const speed = 40; 
 
   counters.forEach(counter => {
     const target = parseInt(counter.innerText.replace("+", ""));
@@ -1049,8 +1546,81 @@ window.onload = () => {
     updateCount();
   });
 };
+
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const services = document.querySelectorAll(".service");
+
+  services.forEach(service => {
+    service.style.opacity = 0;
+    service.style.transform = "translateY(80px)";
+    service.style.transition = "opacity 0.8s ease, transform 0.8s ease";
+
+    const texts = service.querySelectorAll(".content h2, .content p, .content button");
+    const images = service.querySelectorAll(".img");
+
+    texts.forEach(el => {
+      el.style.opacity = 0;
+      el.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+    });
+
+    images.forEach(img => {
+      img.style.opacity = 0;
+      img.style.transition = "opacity 0.7s ease, transform 0.7s ease";
+    });
+  });
+
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+
+        const service = entry.target;
+        service.style.opacity = 1;
+        service.style.transform = "translateY(0)";
+
+        const isRight = service.classList.contains("service-right");
+
+        const texts = service.querySelectorAll(".content h2, .content p, .content button");
+        texts.forEach((el, i) => {
+          el.style.transform = `translateX(${isRight ? "40px" : "-40px"})`;
+
+          setTimeout(() => {
+            el.style.opacity = 1;
+            el.style.transform = "translateX(0)";
+          }, 150 + i * 120);
+        });
+
+        const backImg = service.querySelector(".img.back");
+        const frontImg = service.querySelector(".img.front");
+
+        if (backImg) {
+          backImg.style.transform = "translateX(-40px) scale(0.95)";
+          setTimeout(() => {
+            backImg.style.opacity = 1;
+            backImg.style.transform = "translateX(0) scale(1)";
+          }, 250);
+        }
+
+        if (frontImg) {
+          frontImg.style.transform = "translateX(40px) scale(0.95)";
+          setTimeout(() => {
+            frontImg.style.opacity = 1;
+            frontImg.style.transform = "translateX(0) scale(1)";
+          }, 400);
+        }
+
+        observer.unobserve(service);
+      });
+    },
+    { threshold: 0.3 }
+  );
+
+  services.forEach(service => observer.observe(service));
+});
+
 </script>
-
-
 </body>
+
 </html>
